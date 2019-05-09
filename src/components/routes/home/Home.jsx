@@ -1,24 +1,50 @@
 /* eslint react-hooks/exhaustive-deps: "off" */
-import React, { useEffect } from 'react'
-import Flex from 'flexbox-react'
+import React, { useEffect, useState } from 'react'
+import Grid from '@material-ui/core/Grid'
+import { Spinner } from 'components'
+import { useRouter } from 'hooks/core/use-router/useRouter'
 import { useHomeLogic } from './useHomeLogic'
 import { useAppTitle } from 'hooks/redux/movie-night/use-app-title/useAppTitle'
-// import { } from './styled'
+import { FlexContainer } from './styled'
 
 
 export default function Home () {
+  const [movies, setMovies] = useState()
   const { resetAppTitle } = useAppTitle()
-  const { loadMovies } = useHomeLogic()
+  const { fetchMovies } = useHomeLogic()
+  const { history } = useRouter()
+
+  const loadMovies = async () => {
+    const data = await fetchMovies()
+    setMovies(data.results)
+  }
 
   useEffect(() => {
     resetAppTitle()
     loadMovies()
   }, [])
 
+  if (!movies) {
+    return <Spinner />
+  }
+
+  const handleClick = (id) => {
+    history.push(`/details/${id}`)
+  }
+
+  const renderMovies = () => {
+    return movies.map(({ id, title, poster_path}) => (
+      <Grid item xs={6} key={id} onClick={() => handleClick(id)}>
+        <img src={`http://image.tmdb.org/t/p/w185/${poster_path}`} alt={title} />
+      </Grid>
+    ))
+  }
+
   return (
-    <Flex flexDirection="column" flexGrow={1}>
-      <Flex>Empty component generated for: Home</Flex>
-      <Flex>Displaying value: { someValue } from companion hook</Flex>
-    </Flex>
+    <FlexContainer>
+      <Grid container spacing={0}>
+        {renderMovies()}
+      </Grid>
+    </FlexContainer>
   )
 }

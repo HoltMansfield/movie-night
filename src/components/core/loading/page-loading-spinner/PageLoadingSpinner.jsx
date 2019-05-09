@@ -6,7 +6,7 @@ import { useSpinner } from 'hooks/core/use-spinner/useSpinner'
 import { FixedPosition } from './styled'
 
 
-export function Spinner () {
+export function PageLoadingSpinner () {
   const { showSpinner } = useSpinner()
 
   if (!showSpinner) {

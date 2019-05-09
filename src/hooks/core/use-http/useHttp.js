@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getConfig } from 'config/clear-text'
+import { getSecureConfig } from 'config/secure'
 import { useOverlay } from 'hooks/core/use-overlay/useOverlay'
 import { useSpinner } from 'hooks/core/use-spinner/useSpinner'
 import { useHandleError } from 'hooks/core/use-handle-error/useHandleError'
@@ -19,7 +20,7 @@ const setDefaults = (options) => {
     // default to generic api error
     options.errorInstance = {
       messageId: 'api.genericError',
-      defaultMessage: 'An error occurred while fetching tank data'
+      defaultMessage: 'An API error has occurred.  Please try again.'
     }
   }
 
@@ -31,6 +32,7 @@ export const useHttp = (url, _options) => {
   const { setShowSpinner } = useSpinner()
   const { handleError } = useHandleError()
   const config = getConfig()
+  const secureConfig = getSecureConfig()
 
   const handleHttpError = (error, data, options) => {
     const errorInstance = {
@@ -57,12 +59,16 @@ export const useHttp = (url, _options) => {
     }
   }
 
+  const appendApiKey = () => {
+    return `?api_key=${secureConfig.apiKey}`
+  }
+
   const get = async (url, _options) => {
     const options = setDefaults(_options)
     showSpinnerAndOverlay(options)
 
     try {
-      const result = await axios.get(`${config.apiUrl}/${url}`)
+      const result = await axios.get(`${config.apiUrl}/${url}${appendApiKey()}`)
       hideSpinnerAndOverlay(options)
       return result.data
     } catch (error) {
@@ -81,7 +87,7 @@ export const useHttp = (url, _options) => {
     showSpinnerAndOverlay(options)
 
     try {
-      const result = await axios.put(`${config.apiUrl}/${url}`, requestData)
+      const result = await axios.put(`${config.apiUrl}/${url}${appendApiKey()}`, requestData)
       hideSpinnerAndOverlay(options)
       return result.data
     } catch (error) {
@@ -101,7 +107,7 @@ export const useHttp = (url, _options) => {
     showSpinnerAndOverlay(options)
 
     try {
-      const result = await axios.post(`${config.apiUrl}/${url}`, requestData)
+      const result = await axios.post(`${config.apiUrl}/${url}${appendApiKey()}`, requestData)
       hideSpinnerAndOverlay(options)
       return result.data
     } catch (error) {
@@ -121,7 +127,7 @@ export const useHttp = (url, _options) => {
     showSpinnerAndOverlay(options)
 
     try {
-      const result = await axios.delete(`${config.apiUrl}/${url}`)
+      const result = await axios.delete(`${config.apiUrl}/${url}${appendApiKey()}`)
       hideSpinnerAndOverlay(options)
       return result.data
     } catch (error) {

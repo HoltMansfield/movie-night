@@ -15,7 +15,7 @@ import { useGlobalStyle } from 'hooks/core/use-global-style/useGlobalStyle'
 import { useLanguageImporter } from 'hooks/core/use-language-importer/useLanguageImporter'
 import { App } from './App'
 import { Overlay } from 'components/core/overlay/Overlay'
-import { Spinner } from 'components/core/spinner/Spinner'
+import { PageLoadingSpinner } from 'components/core/loading/page-loading-spinner/PageLoadingSpinner'
 
 
 export function FoundationApp () {
@@ -37,7 +37,7 @@ export function FoundationApp () {
           <MuiThemeProvider theme={theme}>
             <ThemeProvider theme={styledComponentsTheme}>
               <div>
-                <Spinner />
+                <PageLoadingSpinner />
                 <Overlay />
                 <ToastContainer />
                 <GlobalStyle />

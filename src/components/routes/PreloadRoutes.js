@@ -1,8 +1,8 @@
 /* eslint no-unused-vars: "off" */
 import Loadable from 'react-loadable'
-import { RouteLoading } from 'components/core/routing/route-loading/RouteLoading'
-const Home = Loadable({ loader: () => import('./home/Home'), loading: RouteLoading })
-const Details = Loadable({ loader: () => import('./details/Details'), loading: RouteLoading })
+import { Spinner } from 'components/core/loading/spinner/Spinner'
+const Home = Loadable({ loader: () => import('./home/Home'), loading: Spinner })
+const Details = Loadable({ loader: () => import('./details/Details'), loading: Spinner })
 //GeneratorToken: <next-import>
 
 export const preloadAllRoutes = () => {
