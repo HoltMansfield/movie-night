@@ -49,17 +49,3 @@ test('should set showOverlay to new value', () => {
   expect(foundation(undefined, actions.foundation.setShowOverlay(newShowOverlayValue)))
     .toEqual(expectedState)
 })
-
-test('should set modalState to new value', () => {
-  const newModalState = {
-    modal: 'site-details',
-    data: { mock: 'value' }
-  }
-  const expectedState = {
-    ...initialState,
-    modalState: newModalState
-  }
-
-  expect(foundation(undefined, actions.foundation.setModalState(newModalState)))
-    .toEqual(expectedState)
-})

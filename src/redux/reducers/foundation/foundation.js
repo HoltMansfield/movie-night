@@ -6,11 +6,7 @@ const initialState = {
   loggedInUser: null,
   selectedLanguage: 'en',
   showSpinner: false,
-  showOverlay: false,
-  modalState: {
-    modal: 'site-details',
-    data: null
-  }
+  showOverlay: false
 }
 
 const foundation = (state = initialState, action) =>
@@ -30,9 +26,6 @@ const foundation = (state = initialState, action) =>
         return
       case 'SET_SPINNER_MESSAGE':
         draft.spinnerMessage = action.newSpinnerMessage
-        return
-      case 'SET_MODAL_STATE':
-        draft.modalState = action.newModalState
         return
     }
   })

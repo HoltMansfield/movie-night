@@ -35,12 +35,3 @@ test('setShowOverlay should create SET_SHOW_OVERLAY action', () => {
     newOverlayState: expected,
   })
 })
-
-test('setModalState should create SET_MODAL_STATE action', () => {
-  const expected = 'Please wait...'
-
-  expect(actions.foundation.setModalState(expected)).toEqual({
-    type: 'SET_MODAL_STATE',
-    newModalState: expected,
-  })
-})

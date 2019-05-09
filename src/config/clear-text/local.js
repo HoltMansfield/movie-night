@@ -3,5 +3,5 @@
 
 // Used for development with localhost
 export const config = {
-  sentryDsn: 'https://4a21af2cccd6409d8345c76c512c21bc@sentry.io/1408751'
+  apiUrl: 'https://api.themoviedb.org/3/movie/550?api_key=d0f5f2e135336200362af8a1a73acb17'
 }

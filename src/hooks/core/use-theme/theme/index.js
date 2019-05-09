@@ -7,13 +7,13 @@ export const themeObject = {
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: '#0F718D',
+      main: '#000000',
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main,
     },
     secondary: {
       // light: will be calculated from palette.primary.main,
-      main: '#607d8b',
+      main: '#009688',
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main,
     }
