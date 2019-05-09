@@ -1,20 +1,61 @@
 {
   "name": "movie-night",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+  "scripts-explained": {
+    "generate-messages": "Generate messages file in i18n/messages",
+    "generate-translations": "Create/update keys in translations files in i18n/locales bases on messages file",
+    "test:no-watch": "Runs tests once.  Used by circlCI, devs will generally use the test commmand",
+    "encrypt-config": "(*** check README.md ***) This command encrypts the config",
+    "decrypt-config": "(*** check README.md ***) This command decrypts the config"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "REACT_APP_ENV=jest react-scripts test",
+    "eject": "react-scripts eject",
+    "generate-messages": "MESSAGE_DIR='src/i18n/messages' react-scripts build",
+    "generate-translations": "node ./translationRunner.js",
+    "test:no-watch": "CI=true REACT_APP_ENV=jest react-scripts test",
+    "encrypt-config": "node ./src/config/scripts/encrypt.js",
+    "decrypt-config": "node ./src/config/scripts/decrypt.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "@sentry/browser": "^5.2.0",
+    "animate-css-styled-components": "^1.0.2",
+    "auth0-js": "^9.10.2",
+    "axios": "^0.18.0",
+    "flexbox-react": "^4.4.0",
+    "formik": "^1.5.4",
+    "immer": "^3.1.1",
+    "material-ui-pickers": "^2.2.4",
+    "moment": "^2.24.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-intl": "^2.8.0",
+    "react-loadable": "^5.5.0",
+    "react-redux": "^7.0.3",
+    "react-router": "^4.4.0-beta.8",
+    "react-router-dom": "^4.4.0-beta.8",
+    "react-scripts": "3.0.1",
+    "react-toastify": "^5.1.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "styled-components": "^4.2.0",
+    "use-substate": "0.0.2",
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "node-cipher": "^6.3.3",
+    "react-cli": "^0.3.1",
+    "react-hooks-testing-library": "^0.5.0",
+    "react-intl-translations-manager": "^5.0.3",
+    "react-intl.macro": "^0.3.6",
+    "react-test-renderer": "^16.8.6",
+    "react-testing-library": "^7.0.0",
+    "testdouble": "^3.11.0",
+    "testdouble-jest": "^2.0.0"
   },
   "browserslist": {
     "production": [
@@ -27,5 +68,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }
