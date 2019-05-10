@@ -9,10 +9,10 @@ const { useDetailsLogic } = require('./useDetailsLogic')
 
 afterEach(() => {
   //td.reset() // resets all test doubles
-  
+
 })
 
-test('returns expected intial value', () => {
+xit('returns expected intial value', () => {
   // render the hook in an unseen component
   const { result } = renderHook(() => useDetailsLogic())
 

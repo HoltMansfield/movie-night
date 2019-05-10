@@ -1,6 +1,6 @@
 Getting started:
 
-  1: set this value in your .bash_profile
+  1: set this environment variable
     CONFIG_SECRET=<get this key from Holt please>
 
   2: npm i
